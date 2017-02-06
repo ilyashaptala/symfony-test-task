@@ -6,4 +6,10 @@ angular.module('app').controller('AppController', function($scope) {
         {id: 4, name: 'Nokia', priority: 30},
         {id: 5, name: 'HP', priority: 50}
     ];
+
+    $scope.setOrderBy = function(column) {
+        $scope.orderBy = column;
+    };
+
+    $scope.setOrderBy('priority');
 });

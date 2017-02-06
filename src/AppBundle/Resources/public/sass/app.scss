@@ -1,1 +1,23 @@
 @import "bootstrap";
+
+.layout {
+    padding-top: 25px;
+}
+
+.items {
+    .item {
+        &__header {
+            cursor: pointer;
+
+            .glyphicon {
+                visibility: hidden;
+            }
+
+            &.selected {
+                .glyphicon {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}

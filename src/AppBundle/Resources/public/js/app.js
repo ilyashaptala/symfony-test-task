@@ -3,14 +3,13 @@ angular
     .config(function($stateProvider, $interpolateProvider, $qProvider) {
         $stateProvider
             .state('test', {
-                url: '/app',
+                url: '/',
                 templateUrl: 'app.html',
                 controller: 'AppController'
             });
 
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
-        // $locationProvider.html5Mode(true);
         $qProvider.errorOnUnhandledRejections(false);
     })
     .run(function($state) {

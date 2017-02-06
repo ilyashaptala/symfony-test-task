@@ -2,14 +2,25 @@
 
 {% block content %}
     <script type="text/ng-template" id="app.html">
-        <table class="table table-bordered table-responsive" data-ng-if="items">
+        <table class="items table table-bordered table-responsive" data-ng-if="items">
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Priority</th>
+                <th class="item__header" data-ng-class="{selected: orderBy === 'id'}" data-ng-click="setOrderBy('id')">
+                    <span>ID</span>
+                    <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                </th>
+
+                <th class="item__header" data-ng-class="{selected: orderBy === 'name'}" data-ng-click="setOrderBy('name')">
+                    <span>Name</span>
+                    <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                </th>
+
+                <th class="item__header" data-ng-class="{selected: orderBy === 'priority'}" data-ng-click="setOrderBy('priority')">
+                    <span>Priority</span>
+                    <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                </th>
             </tr>
 
-            <tr data-ng-repeat="item in items | orderBy: 'priority'">
+            <tr data-ng-repeat="item in items | orderBy: orderBy">
                 <td>[[ item.id ]]</td>
                 <td>[[ item.name ]]</td>
                 <td>[[ item.priority ]]</td>
