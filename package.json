@@ -1,0 +1,18 @@
+{
+  "name": "symfony-bundles-project",
+  "version": "1.0.0",
+  "description": "Symfony project as a template",
+  "main": "gulpfile.js",
+  "author": "Dmitry Khaperets",
+  "license": "ISC",
+  "scripts": {
+    "build": "npm install && bower install && gulp build"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-watch": "^4.3.11"
+  }
+}
