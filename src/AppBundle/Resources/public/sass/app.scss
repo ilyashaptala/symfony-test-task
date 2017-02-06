@@ -10,12 +10,27 @@
             cursor: pointer;
 
             .glyphicon {
-                visibility: hidden;
+                float: right;
+
+                &.glyphicon-chevron-up,
+                &.glyphicon-chevron-down {
+                    display: none;
+                }
             }
 
             &.selected {
-                .glyphicon {
-                    visibility: visible;
+                .glyphicon-chevron-down {
+                    display: block;
+                }
+            }
+
+            &.reverse {
+                .glyphicon-chevron-up {
+                    display: block;
+                }
+
+                .glyphicon-chevron-down {
+                    display: none;
                 }
             }
         }
