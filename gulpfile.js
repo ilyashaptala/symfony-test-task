@@ -16,6 +16,7 @@ gulp.task('js', function() {
         './bower_components/angular-ui-router/release/angular-ui-router.js',
         './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         './src/AppBundle/Resources/public/js/app.js',
+        './src/AppBundle/Resources/public/js/directive/*.js',
         './src/AppBundle/Resources/public/js/factory/*.js',
         './src/AppBundle/Resources/public/js/controller/*.js'])
         .pipe(sourcemaps.init({largeFile: true}))
