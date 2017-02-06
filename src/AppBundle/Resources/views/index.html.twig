@@ -6,11 +6,13 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Priority</th>
             </tr>
 
             <tr data-ng-repeat="item in items | orderBy: 'priority'">
-                <td>[[ item ]]</td>
-                <td>[[ tag.name ]]</td>
+                <td>[[ item.id ]]</td>
+                <td>[[ item.name ]]</td>
+                <td>[[ item.priority ]]</td>
             </tr>
         </table>
     </script>
