@@ -1,9 +1,9 @@
 {
-  "name": "symfony-bundles-project",
+  "name": "symfony-test-task",
   "version": "1.0.0",
-  "description": "Symfony project as a template",
+  "description": "Symfony test task",
   "main": "gulpfile.js",
-  "author": "Dmitry Khaperets",
+  "author": "Ilya Shaptala",
   "license": "ISC",
   "scripts": {
     "build": "npm install && bower install && gulp build"
