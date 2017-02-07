@@ -13,10 +13,11 @@ class Version20170102010000 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $table = $schema->createTable('app_items');
+        $table = $schema->createTable('app_products');
 
         $table->addColumn('id', 'integer', ['autoincrement' => true, 'unsigned' => true]);
         $table->addColumn('name', 'string', ['length' => 255]);
+        $table->addColumn('price', 'decimal', ['scale' => 2]);
         $table->addColumn('priority', 'smallint', ['unsigned' => true]);
         $table->addColumn('created_at', 'datetime');
         $table->addColumn('updated_at', 'datetime', ['notnull' => false]);
@@ -30,7 +31,6 @@ class Version20170102010000 extends AbstractMigration
      */
     public function down(Schema $schema)
     {
-        $schema->dropTable('app_items');
+        $schema->dropTable('app_products');
     }
-
 }

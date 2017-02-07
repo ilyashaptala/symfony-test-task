@@ -1,12 +1,6 @@
 /* global _ */
-angular.module('app').controller('AppController', function($scope) {
-    $scope.items = [
-        {id: 1, name: 'Apple', priority: 20},
-        {id: 2, name: 'Lenovo', priority: 10},
-        {id: 3, name: 'Samsung', priority: 40},
-        {id: 4, name: 'Nokia', priority: 30},
-        {id: 5, name: 'HP', priority: 50}
-    ];
+angular.module('app').controller('AppController', function($scope, Product) {
+    $scope.products = Product.query();
 
     $scope.sortBy = function(column) {
         if (column === $scope.orderBy) {
@@ -19,14 +13,14 @@ angular.module('app').controller('AppController', function($scope) {
     };
 
     $scope.setDefaultOrder = function() {
-        var orderBy = _.first(_.keys(_.first($scope.items)));
+        var orderBy = _.first(_.keys(_.first($scope.products)));
 
         if (orderBy) {
             $scope.sortBy(orderBy);
         }
     };
 
-    $scope.$watch('items', function() {
+    $scope.$watch('products', function() {
         $scope.setDefaultOrder();
     }, true);
 });
