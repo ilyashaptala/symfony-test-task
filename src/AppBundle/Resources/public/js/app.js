@@ -1,11 +1,11 @@
 angular
-    .module('app', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngAnimate', 'ngMessages'])
+    .module('app', ['ui.router', 'ui.bootstrap', 'ngResource', 'ngCookies', 'ngAnimate', 'ngMessages'])
     .config(function($stateProvider, $interpolateProvider, $qProvider) {
         $stateProvider
-            .state('test', {
+            .state('products', {
                 url: '/',
-                templateUrl: 'app.html',
-                controller: 'AppController'
+                templateUrl: 'products.html',
+                controller: 'ProductController'
             });
 
         $interpolateProvider.startSymbol('[[');
@@ -13,5 +13,5 @@ angular
         $qProvider.errorOnUnhandledRejections(false);
     })
     .run(function($state) {
-        $state.go('test');
+        $state.go('products');
     });

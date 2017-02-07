@@ -11,12 +11,14 @@ gulp.task('js', function() {
         './bower_components/underscore/underscore.js',
         './bower_components/angular/angular.js',
         './bower_components/angular-animate/angular-animate.js',
+        './bower_components/angular-cookies/angular-cookies.js',
         './bower_components/angular-resource/angular-resource.js',
         './bower_components/angular-messages/angular-messages.js',
         './bower_components/angular-ui-router/release/angular-ui-router.js',
         './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
         './src/AppBundle/Resources/public/js/app.js',
         './src/AppBundle/Resources/public/js/directive/*.js',
+        './src/AppBundle/Resources/public/js/filter/*.js',
         './src/AppBundle/Resources/public/js/factory/*.js',
         './src/AppBundle/Resources/public/js/controller/*.js'])
         .pipe(sourcemaps.init({largeFile: true}))

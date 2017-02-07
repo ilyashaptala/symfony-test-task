@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "angular": "^1.6.1",
+    "angular-cookies": "1.6.1",
     "angular-resource": "^1.6.1",
     "angular-ui-router": "^0.3.2",
     "angular-bootstrap": "^2.3.1",
@@ -10,5 +11,19 @@
     "angular-animate": "^1.6.1",
     "underscore": "^1.8.3",
     "bootstrap-sass": "bootstrap-sass-official#^3.3.7"
-  }
+  },
+  "homepage": "https://github.com/ilyashaptala/symfony-test-task",
+  "authors": [
+    "usernotrobot <ilyashaptala@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
 }

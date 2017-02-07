@@ -4,6 +4,12 @@
     padding-top: 25px;
 }
 
+.search {
+    &__btn {
+        margin-top: 24px;
+    }
+}
+
 .products {
     .table {
         &__header {

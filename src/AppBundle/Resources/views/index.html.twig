@@ -1,7 +1,32 @@
 {% extends 'AppBundle::layout.html.twig' %}
 
 {% block content %}
-    <script type="text/ng-template" id="app.html">
+    <script type="text/ng-template" id="products.html">
+        <form class="form-group search">
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Name:</label>
+                    <input type="text" data-ng-model="search.name" class="form-control" data-uib-typeahead="state.name as state.name for state in typeahead($viewValue)" data-typeahead-min-length="1" data-typeahead-no-results="noResults">
+                </div>
+                <div class="col-md-2">
+                    <label>Price from:</label>
+                    <input type="text" data-ng-model="search.priceMin" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label>Price to:</label>
+                    <input type="text" data-ng-model="search.priceMax" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label>Volume:</label>
+                    <input type="text" data-ng-model="search.volume" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-success search__btn" data-ng-click="save(search)">Save results</button>
+                </div>
+            </div>
+        </form>
+
+
         <table class="products table table-bordered table-responsive" data-ng-if="products">
             <tr>
                 <th class="table__header" data-ng-class="{selected: orderBy === 'id', reverse: reverse && orderBy === 'id'}" data-ng-click="sortBy('id')">
@@ -23,7 +48,7 @@
                 </th>
 
                 <th class="table__header" data-ng-class="{selected: orderBy === 'priority', reverse: reverse && orderBy === 'priority'}" data-ng-click="sortBy('priority')">
-                    <span>Priority</span>
+                    <span>Volume</span>
                     <i class="glyphicon glyphicon-chevron-up"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
                 </th>

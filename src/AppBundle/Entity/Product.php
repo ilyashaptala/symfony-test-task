@@ -113,7 +113,7 @@ class Product implements \Serializable
      */
     public function getPrice()
     {
-        return $this->price;
+        return (float) $this->price;
     }
 
     /**
