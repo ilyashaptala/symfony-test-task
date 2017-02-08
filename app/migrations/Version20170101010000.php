@@ -19,6 +19,7 @@ class Version20170101010000 extends AbstractMigration
         $table->addColumn('username', 'string', ['length' => 64]);
         $table->addColumn('password', 'string', ['length' => 255]);
         $table->addColumn('salt', 'string', ['length' => 64]);
+        $table->addColumn('limits', 'smallint', ['unsigned' => true]);
 
         $table->setPrimaryKey(['id']);
         $table->addUniqueIndex(['username']);

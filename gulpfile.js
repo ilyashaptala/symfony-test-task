@@ -19,6 +19,7 @@ gulp.task('js', function() {
         './src/AppBundle/Resources/public/js/app.js',
         './src/AppBundle/Resources/public/js/directive/*.js',
         './src/AppBundle/Resources/public/js/filter/*.js',
+        './src/AppBundle/Resources/public/js/service/*.js',
         './src/AppBundle/Resources/public/js/factory/*.js',
         './src/AppBundle/Resources/public/js/controller/*.js'])
         .pipe(sourcemaps.init({largeFile: true}))

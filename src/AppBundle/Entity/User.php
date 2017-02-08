@@ -36,6 +36,11 @@ class User implements UserInterface, \Serializable
     private $salt;
 
     /**
+     * @ORM\Column(type="smallint", options={"unsigned"=true})
+     */
+    private $limits;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Role")
      * @ORM\JoinTable(name="app_users_roles",
      *     joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")},
@@ -52,6 +57,8 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->roles = new ArrayCollection;
+
+        $this->setLimits(0);
     }
 
     /**
@@ -127,6 +134,26 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * @param int $limits
+     *
+     * @return self
+     */
+    public function setLimits($limits)
+    {
+        $this->limits = $limits;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLimits()
+    {
+        return $this->limits;
+    }
+
+    /**
      * @param Role $role
      *
      * @return self
@@ -180,7 +207,8 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            $this->salt
+            $this->salt,
+            $this->limits
         ]);
     }
 
@@ -193,7 +221,8 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            $this->salt
+            $this->salt,
+            $this->limits
             ) = unserialize($serialized);
     }
 }

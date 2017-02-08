@@ -1,10 +1,16 @@
 /* global _ */
-angular.module('app').controller('ProductController', function ($scope, $cookies, $http, Product) {
-    $scope.search = $cookies.getObject('search') || {};
+angular.module('app').controller('ProductController', function ($scope, $cookies, $http, Product, CurrentUser) {
+    $scope.conditions = $cookies.getObject('conditions') || {};
 
     $scope.getLatestProducts = function () {
-        $scope.products = Product.query()
-        $scope.reverse = true;
+        var lastSearch = $cookies.getObject('conditions');
+
+        if (_.size(lastSearch)) {
+            $scope.products = Product.search(lastSearch);
+        } else {
+            $scope.products = Product.query();
+            $scope.reverse = true;
+        }
     };
 
     $scope.sortBy = function (column) {
@@ -29,18 +35,12 @@ angular.module('app').controller('ProductController', function ($scope, $cookies
         $scope.setDefaultOrder();
     }, true);
 
-    $scope.$watch('search', function (newValue, oldValue) {
-        _.each($scope.search, function (value, key) {
+    $scope.$watch('conditions', function (newValue, oldValue) {
+        _.each($scope.conditions, function (value, key) {
             if (!value) {
-                delete $scope.search[key];
+                delete $scope.conditions[key];
             }
         });
-
-        if (_.size($scope.search)) {
-            $scope.products = Product.search($scope.search);
-        } else if (_.size(oldValue)) {
-            $scope.getLatestProducts();
-        }
     }, true);
 
     $scope.typeahead = function (value) {
@@ -55,8 +55,18 @@ angular.module('app').controller('ProductController', function ($scope, $cookies
             });
     };
 
-    $scope.save = function (conditions) {
-        $cookies.putObject('search', conditions);
+    $scope.search = function () {
+        if (CurrentUser.hasLimits()) {
+            if (_.size($scope.conditions)) {
+                $scope.products = Product.search($scope.conditions);
+            } else if (_.size($scope.conditions)) {
+                $scope.getLatestProducts();
+            }
+
+            CurrentUser.decrementLimits();
+
+            $cookies.putObject('conditions', $scope.conditions);
+        }
 
         return false;
     };

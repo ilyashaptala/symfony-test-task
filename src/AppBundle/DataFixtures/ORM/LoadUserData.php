@@ -20,6 +20,7 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 
         foreach ($this->getData() as $data) {
             $user = (new User())
+                ->setLimits($data['limits'])
                 ->setUsername($data['username'])
                 ->setPassword($data['password']);
 
@@ -50,11 +51,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
             [
                 'username' => 'admin',
                 'password' => 'admin',
+                'limits'   => 5,
                 'roles'    => ['ROLE_ALLOWED_TO_SWITCH', 'ROLE_ADMIN']
             ],
             [
                 'username' => 'demo',
                 'password' => 'demo',
+                'limits'   => 3,
                 'roles'    => ['ROLE_USER']
             ]
         ];
