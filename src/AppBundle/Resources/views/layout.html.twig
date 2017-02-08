@@ -13,16 +13,16 @@
             <div class="container-fluid">
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right" data-ng-cloak>
-                        <li data-ng-if="user && user.hasLimits()">
+                        <li data-ng-if="user.isLogin() && user.hasLimits()">
                             <a class="navbar-link">You can save result only [[ user.getLimits() ]] times</a>
                         </li>
-                        <li data-ng-if="user && !user.hasLimits()">
+                        <li data-ng-if="user.isLogin() && !user.hasLimits()">
                             <a class="navbar-link danger">Limits been exhausted</a>
                         </li>
-                        <li data-ng-if="user">
+                        <li data-ng-if="user.isLogin()">
                             <a href="{{ path('app.security.logout') }}">Logout</a>
                         </li>
-                        <li data-ng-if="!user">
+                        <li data-ng-if="!user.isLogin()">
                             {{ form_start(login, {attr: {'class': 'navbar-form'}}) }}
                             <div class="form-group">{{ form_widget(login.username) }}</div>
                             <div class="form-group">{{ form_widget(login.password) }}</div>
