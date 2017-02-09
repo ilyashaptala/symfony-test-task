@@ -6,7 +6,6 @@ use Doctrine\ORM\EntityRepository;
 
 abstract class Repository extends EntityRepository
 {
-
     /**
      * @return int
      */

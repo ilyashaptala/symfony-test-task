@@ -17,10 +17,10 @@ class ProductRepository extends Repository
     public function latest($limit = self::LATEST_MAX)
     {
         return $this
-            ->createQueryBuilder('p')
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult();
+                ->createQueryBuilder('p')
+                ->setMaxResults($limit)
+                ->getQuery()
+                ->getResult();
     }
 
     /**
@@ -31,12 +31,12 @@ class ProductRepository extends Repository
     public function findLikeName($name, $limit = self::TYPEAHEAD_MAX)
     {
         return $this
-            ->createQueryBuilder('p')
-            ->where('p.name like :name')
-            ->setParameter('name', "%$name%")
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult();
+                ->createQueryBuilder('p')
+                ->where('p.name like :name')
+                ->setParameter('name', "%$name%")
+                ->setMaxResults($limit)
+                ->getQuery()
+                ->getResult();
     }
 
     /**
@@ -81,6 +81,5 @@ class ProductRepository extends Repository
         }
 
         return $query->getQuery()->getResult();
-
     }
 }

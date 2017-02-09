@@ -1,19 +1,26 @@
-angular.module('app').service('CurrentUser', function (User) {
-    var user = User.get();
+angular.module('app').service('CurrentUser', function(User) {
+    var currentUser = false;
+
+    User.get().$promise.then(function(user) {
+        currentUser = user;
+    });
 
     return {
         isLogin: function() {
-            return user && user.id;
+            return this.isLoaded() && currentUser.id;
+        },
+        isLoaded: function() {
+            return false !== currentUser;
         },
         getLimits: function() {
-            return user.limits;
+            return this.isLogin() ? currentUser.limits : 0;
         },
         hasLimits: function() {
-            return user.limits && false !== user.limits;
+            return this.isLogin() && this.getLimits() > 0;
         },
         decrementLimits: function() {
-            user.limits--;
-            user.$save();
+            currentUser.limits--;
+            currentUser.$save();
         }
     };
 });

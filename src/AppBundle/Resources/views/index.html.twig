@@ -9,18 +9,22 @@
                         <label>Name:</label>
                         <input type="text" data-ng-model="conditions.name" class="form-control" data-uib-typeahead="state.name as state.name for state in typeahead($viewValue)" data-typeahead-min-length="1" data-typeahead-no-results="noResults">
                     </div>
+					
                     <div class="col-md-2">
                         <label>Price from:</label>
                         <input type="text" data-ng-model="conditions.priceMin" class="form-control">
                     </div>
+					
                     <div class="col-md-2">
                         <label>Price to:</label>
                         <input type="text" data-ng-model="conditions.priceMax" class="form-control">
                     </div>
+					
                     <div class="col-md-2">
                         <label>Volume:</label>
                         <input type="text" data-ng-model="conditions.volume" class="form-control">
                     </div>
+					
                     <div class="col-md-1">
                         <div class="btn-group">
                             <button class="btn btn-primary search__btn" data-ng-click="search()">Find</button>
@@ -29,7 +33,6 @@
                 </div>
             </form>
         {% endif %}
-
 
         <table class="products table table-bordered table-responsive" data-ng-if="products">
             <tr>

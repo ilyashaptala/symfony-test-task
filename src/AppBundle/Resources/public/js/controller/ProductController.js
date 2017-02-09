@@ -1,19 +1,21 @@
 /* global _ */
-angular.module('app').controller('ProductController', function ($scope, $cookies, $http, Product, CurrentUser) {
-    $scope.conditions = $cookies.getObject('conditions') || {};
+angular.module('app').controller('ProductController', function($scope, Product, CurrentUser, SearchHistory) {
+    SearchHistory.last().$promise.then(function(history) {
+        $scope.conditions = history.conditions || {};
 
-    $scope.getLatestProducts = function () {
-        var lastSearch = $cookies.getObject('conditions');
+        $scope.getLatestProducts();
+    });
 
-        if (_.size(lastSearch)) {
-            $scope.products = Product.search(lastSearch);
+    $scope.getLatestProducts = function() {
+        if (_.size($scope.conditions)) {
+            $scope.products = Product.search($scope.conditions);
         } else {
             $scope.products = Product.query();
             $scope.reverse = true;
         }
     };
 
-    $scope.sortBy = function (column) {
+    $scope.sortBy = function(column) {
         if (column === $scope.orderBy) {
             $scope.reverse = !$scope.reverse;
         } else {
@@ -23,7 +25,7 @@ angular.module('app').controller('ProductController', function ($scope, $cookies
         $scope.orderBy = column;
     };
 
-    $scope.setDefaultOrder = function () {
+    $scope.setDefaultOrder = function() {
         var orderBy = _.first(_.keys(_.first($scope.products)));
 
         if (orderBy) {
@@ -31,45 +33,35 @@ angular.module('app').controller('ProductController', function ($scope, $cookies
         }
     };
 
-    $scope.$watch('products', function () {
+    $scope.$watch('products', function() {
         $scope.setDefaultOrder();
     }, true);
 
-    $scope.$watch('conditions', function (newValue, oldValue) {
-        _.each($scope.conditions, function (value, key) {
+    $scope.$watch('conditions', function() {
+        _.each($scope.conditions, function(value, key) {
             if (!value) {
                 delete $scope.conditions[key];
             }
         });
     }, true);
 
-    $scope.typeahead = function (value) {
-        return $http
-            .get('/api/products/typeahead', {
-                params: {
-                    name: value
-                }
-            })
-            .then(function (response) {
-                return response.data;
-            });
+    $scope.typeahead = function(value) {
+        return Product.typeahead({name: value}).$promise.then(function(products) {
+            return products;
+        });
     };
 
-    $scope.search = function () {
-        if (CurrentUser.hasLimits()) {
-            if (_.size($scope.conditions)) {
-                $scope.products = Product.search($scope.conditions);
-            } else if (_.size($scope.conditions)) {
-                $scope.getLatestProducts();
-            }
-
-            CurrentUser.decrementLimits();
-
-            $cookies.putObject('conditions', $scope.conditions);
+    $scope.search = function() {
+        if (false === CurrentUser.hasLimits() && 0 === _.size($scope.conditions)) {
+            return;
         }
+
+        CurrentUser.decrementLimits();
+
+        $scope.products = Product.search($scope.conditions);
+
+        SearchHistory.save({conditions: $scope.conditions});
 
         return false;
     };
-
-    $scope.getLatestProducts();
 });
