@@ -21,6 +21,8 @@ before_install:
 
 install:
     - composer install
+    
+before_script: composer require phpunit/phpunit
 
 script:
     - phpunit
