@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="app_search_history", indexes={
  *      @ORM\Index(name="user_idx", columns={"user_id"})
  * })
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SearchHistoryRepository")
  */
 class SearchHistory implements \Serializable, \JsonSerializable
 {

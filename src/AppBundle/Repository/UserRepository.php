@@ -6,7 +6,6 @@ use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
 class UserRepository extends Repository implements UserLoaderInterface
 {
-
     /**
      * {@inheritdoc}
      */

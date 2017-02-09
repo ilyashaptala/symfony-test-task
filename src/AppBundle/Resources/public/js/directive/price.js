@@ -1,4 +1,4 @@
-angular.module('app').directive('price', function($parse) {
+angular.module('app').directive('price', function() {
     return {
         restrict: 'A',
         scope: {

@@ -12,6 +12,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class SearchHistoryController extends Controller
 {
+    /**
+     * @Configuration\Route("/search/history", name="api.search.history.last")
+     * @Configuration\Method("GET")
+     */
+    public function lastAction()
+    {
+        $user = $this->getUser();
+
+        if (null === $user) {
+            $item = null;
+        } else {
+            $item = $this->getDoctrine()->getRepository(SearchHistory::class)->lastByUser($user);
+        }
+
+        return $this->json($item);
+    }
 
     /**
      * @Configuration\Route("/search/history", name="api.search.history.create")
