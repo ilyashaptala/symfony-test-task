@@ -49,9 +49,14 @@ class SearchHistory implements \Serializable, \JsonSerializable
 
     /**
      * Creating a new entity.
+     *
+     * @param User  $user
+     * @param array $conditions
      */
-    public function __construct()
+    public function __construct(User $user = null, array $conditions = [])
     {
+        $this->setUser($user);
+        $this->setConditions($conditions);
         $this->setCreatedAt(new DateTime());
     }
 
